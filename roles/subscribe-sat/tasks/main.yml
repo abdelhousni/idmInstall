@@ -1,10 +1,10 @@
 ---
 # tasks file for subscribe-sat
-- name: Add Satellite server IP
-  lineinfile:
-    path: /etc/hosts
-    line: '{{ sat_ip }}  {{ satellite }}'
-    create: yes
+# - name: Add Satellite server IP
+#   lineinfile:
+#     path: /etc/hosts
+#     line: '{{ sat_ip }}  {{ satellite }}'
+#     create: yes
 # - name: Pull and Install katello-ca
 #   block:
 #     - name: Pull cert

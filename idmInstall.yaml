@@ -1,6 +1,6 @@
-# ---
-# - name: Configure Windows
-#   hosts: win
+---
+- name: Configure Windows
+  hosts: win
 #   become_method: runas
 #   become_user: Administrator
 #   become: False

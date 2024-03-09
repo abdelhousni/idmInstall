@@ -57,7 +57,7 @@ all:
               gateway4: "{{ ansible_default_ipv4.gateway }}"   
   vars:
 ## Global
-    admin_password: '' # Admin password used for all applications
+    admin_password: 'HomelabDAR2024@!' # Admin password used for all applications
     domain: "{{ shortname }}.{{ root_domain }}"
     root_domain: 'dar.local' # AD domain, usually the root of your IdM
     shortname: "idm"

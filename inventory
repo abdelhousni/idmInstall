@@ -1,15 +1,15 @@
 all:
   children:
-    win:
-      hosts:
-        winblog.example.com:
-          ansible_user: Administrator
-          ansible_password: "{{ admin_password }}"
-          ansible_connection: winrm
-          ansible_winrm_server_cert_validation: ignore
+    # win:
+    #   hosts:
+    #     winblog.example.com:
+    #       ansible_user: Administrator
+    #       ansible_password: "{{ admin_password }}"
+    #       ansible_connection: winrm
+    #       ansible_winrm_server_cert_validation: ignore
     ipaserver:
       hosts: 
-        idm.web.example.com:
+        pv-rh-idm01.idm.dar.local:
           ipaserver_domain: "{{ domain }}"
           ipaserver_realm: "{{ domain | upper}}"
           ipaserver_setup_dns: yes
@@ -22,7 +22,7 @@ all:
           ipaserver_firewalld_zone: public
     ipareplicas:
       hosts: 
-        rep.web.example.com:
+        pv-rh-idm02.rep.dar.local:
       vars:
         ipareplica_no_forwarders: yes
         ipareplica_setup_adtrust: yes
@@ -42,7 +42,7 @@ all:
               gateway4: "{{ ansible_default_ipv4.gateway }}"      
     ipaclients:
       hosts: 
-        rh8.web.example.com:
+        pv-rh8-web.dar.local:
       vars:
         ipaclient_mkhomedir: yes
         network_connections:
@@ -59,36 +59,36 @@ all:
 ## Global
     admin_password: '' # Admin password used for all applications
     domain: "{{ shortname }}.{{ root_domain }}"
-    root_domain: 'example.com' # AD domain, usually the root of your IdM
-    shortname: "web"
+    root_domain: 'dar.local' # AD domain, usually the root of your IdM
+    shortname: "idm"
 ## IdM Info
     ipaadmin_password: "{{ admin_password }}"
     ipadm_password: "{{ admin_password }}"
 ## AD Info
-    ad_password: "{{ admin_password }}" # AD administrator password
-    ad_ip: '192.168.1.5' # AD IP
-    ad_netbios: "EXAMPLE"
+    # ad_password: "{{ admin_password }}" # AD administrator password
+    # ad_ip: '192.168.1.5' # AD IP
+    # ad_netbios: "EXAMPLE"
     idm_pri: "idm.{{ domain }}"
-    idm_DNS1: '192.168.1.52' # primary IdM IP address
+    idm_DNS1: '192.168.1.49' # primary IdM IP address
 ### The below lines are not needed if you are only running a single IdM server.    
     idm_rep: "rep.{{ domain }}"
-    idm_DNS2: '192.168.1.53' # replica IdM IP address
+    idm_DNS2: '192.168.1.50' # replica IdM IP address
 ## AD Enterprise User/Group Creation
-    ad_idm_admins: # AD enterprise admin name, needed for AD Trust creation
-      - { ad_name: johnd_ad, ad_first: John, ad_last: Doe }
-      - { ad_name: janed_ad, ad_first: Jane, ad_last: Doe }
-    ad_grp_users: ad-idm-users
-    ad_grp_admins: ad-idm-admins
-    ad_idm_users: # Test users
-      - { ad_name: aduser1, ad_first: AD, ad_last: User1 }
-      - { ad_name: aduser2, ad_first: AD, ad_last: User2 }
-      - { ad_name: aduser3, ad_first: AD, ad_last: User3 }
-    ad_idm_password: "Redhat123!"
+    # ad_idm_admins: # AD enterprise admin name, needed for AD Trust creation
+    #   - { ad_name: johnd_ad, ad_first: John, ad_last: Doe }
+    #   - { ad_name: janed_ad, ad_first: Jane, ad_last: Doe }
+    # ad_grp_users: ad-idm-users
+    # ad_grp_admins: ad-idm-admins
+    # ad_idm_users: # Test users
+    #   - { ad_name: aduser1, ad_first: AD, ad_last: User1 }
+    #   - { ad_name: aduser2, ad_first: AD, ad_last: User2 }
+    #   - { ad_name: aduser3, ad_first: AD, ad_last: User3 }
+    # ad_idm_password: "Redhat123!"
 ## Satellite Info
     sat_ip: '' # Satellite IP
-    satellite: '' # Satellite fqdn
+    satellite: 'pv-rh-foreman.dar' # Satellite fqdn
     satKey7: '' # Activation key for RHEL 7 servers
-    satKey8: '' # Activation key for RHEL 8 servers
-    satKey9: '' # Activation key for RHEL 9 servers
+    satKey8: 'AK_DAR_RHEL8_2024' # Activation key for RHEL 8 servers
+    satKey9: 'AK_DAR_RHEL9_2024' # Activation key for RHEL 9 servers
     satCDN_user: '' # customer portal account username if using the CDN to register and update the servers
     satCDN_passwd: '' # customer portal account pasword if using the CDN to register and update the servers

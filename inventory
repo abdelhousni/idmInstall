@@ -85,9 +85,9 @@ all:
     #   - { ad_name: aduser3, ad_first: AD, ad_last: User3 }
     # ad_idm_password: "Redhat123!"
 ## Satellite Info
-    sat_ip: '' # Satellite IP
+    sat_ip: '(192.168.1.61' # Satellite IP
     satellite: 'pv-rh-foreman.dar' # Satellite fqdn
-    satKey7: '' # Activation key for RHEL 7 servers
+    # satKey7: '' # Activation key for RHEL 7 servers
     satKey8: 'AK_DAR_RHEL8_2024' # Activation key for RHEL 8 servers
     satKey9: 'AK_DAR_RHEL9_2024' # Activation key for RHEL 9 servers
     satCDN_user: '' # customer portal account username if using the CDN to register and update the servers

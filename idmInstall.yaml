@@ -1,17 +1,17 @@
----
-- name: Configure Windows
-  hosts: win
-  become_method: runas
-  become_user: Administrator
-  become: False
-  roles:
-    - role: winCreate
-      state: present
-    - role: winUsers
-      state: present
-    - role: winDelegate
-      state: present
-  tags: win
+# ---
+# - name: Configure Windows
+#   hosts: win
+#   become_method: runas
+#   become_user: Administrator
+#   become: False
+#   roles:
+#     - role: winCreate
+#       state: present
+#     - role: winUsers
+#       state: present
+#     - role: winDelegate
+#       state: present
+#   tags: win
 # Register systems to RH CDN or on-premise Satellite
 - name: Subscribe systems to RH CDN
   hosts: all
